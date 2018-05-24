@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Create a new custom type
@@ -45,9 +46,14 @@ func (d deck) toString() string {
 }
 
 func (d deck) shuffle() {
-	for i := range d {
-		newPosition := rand.Intn(len(d) - 1)
 
+	// Create RNG with source
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d {
+		newPosition := r.Intn(len(d) - 1)
+		// Swap
 		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }
