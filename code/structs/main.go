@@ -1,36 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type contactInfo struct {
-	email   string
-	zipCode int
-}
-
+// Define struct
 type person struct {
 	firstName string
 	lastName  string
-	contactInfo
 }
 
 func main() {
-	jim := person{
-		firstName: "Jim",
-		lastName:  "Party",
-		contactInfo: contactInfo{
-			email:   "jim@gmail.com",
-			zipCode: 94000,
-		},
-	}
+	// Note: ORDERING IS IMPORTANT HERE!! Sucks, but such is life.
+	me := person{"Pritam", "Sukumar"}
+	fmt.Println("New struct initialized with:", me.firstName, me.lastName)
 
-	jim.updateName("jimmy")
-	jim.print()
-}
+	// Much better way to define it
+	gautam := person{firstName: "Gautam", lastName: "Sukumar"}
+	fmt.Println("New struct initialized with:", gautam.firstName, gautam.lastName)
 
-func (pointerToPerson *person) updateName(newFirstName string) {
-	(*pointerToPerson).firstName = newFirstName
-}
+	// Can directly print the things
+	fmt.Println("Printing struct directly", me)
 
-func (p person) print() {
-	fmt.Printf("%+v", p)
+	// Define a var -- things are AUTOMATICALLY ASSIGNED (strings to "", and so on)
+	var randomDude person
+	randomDude.firstName = "Pavitra"
+	randomDude.lastName = "Prabhakar"
+	fmt.Printf("%+v", randomDude)
 }
