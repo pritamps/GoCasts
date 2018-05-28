@@ -43,5 +43,17 @@ func main() {
 	randomDude.contactInfo = contactInfo{
 		email:   "xyz@gmail.com",
 		zipCode: 560011}
-	fmt.Printf("%+v", randomDude)
+	randomDude.print()
+	// Pass reference to randomDude
+	randomDude.updateFirstName("Peter")
+	randomDude.print()
+}
+
+// Receiver on structs
+func (p person) print() {
+	fmt.Printf("\nFirst name: %s,\nLast Name: %s,\nContact Info: %v", p.firstName, p.lastName, p.contactInfo)
+}
+
+func (p *person) updateFirstName(newFirstName string) {
+	p.firstName = newFirstName
 }
