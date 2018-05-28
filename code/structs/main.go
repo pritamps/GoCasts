@@ -4,20 +4,34 @@ import (
 	"fmt"
 )
 
+type contactInfo struct {
+	email   string
+	zipCode int
+}
+
 // Define struct
 type person struct {
 	firstName string
 	lastName  string
+	// Nested struct
+	contactInfo
 }
 
 func main() {
 	// Note: ORDERING IS IMPORTANT HERE!! Sucks, but such is life.
-	me := person{"Pritam", "Sukumar"}
+	me := person{"Pritam", "Sukumar", contactInfo{"pritamps@gmail.com", 560011}}
+
 	fmt.Println("New struct initialized with:", me.firstName, me.lastName)
 
 	// Much better way to define it
-	gautam := person{firstName: "Gautam", lastName: "Sukumar"}
-	fmt.Println("New struct initialized with:", gautam.firstName, gautam.lastName)
+	gautam := person{
+		firstName: "Gautam",
+		lastName:  "Sukumar",
+		contactInfo: contactInfo{
+			email:   "gautamps@gmail.com",
+			zipCode: 7901},
+	}
+	fmt.Println("New struct initialized with:", gautam.firstName, gautam.lastName, gautam.contactInfo)
 
 	// Can directly print the things
 	fmt.Println("Printing struct directly", me)
@@ -26,5 +40,8 @@ func main() {
 	var randomDude person
 	randomDude.firstName = "Pavitra"
 	randomDude.lastName = "Prabhakar"
+	randomDude.contactInfo = contactInfo{
+		email:   "xyz@gmail.com",
+		zipCode: 560011}
 	fmt.Printf("%+v", randomDude)
 }
