@@ -54,6 +54,7 @@ func (p person) print() {
 	fmt.Printf("\nFirst name: %s,\nLast Name: %s,\nContact Info: %v", p.firstName, p.lastName, p.contactInfo)
 }
 
+// Note that we take in a pointer
 func (p *person) updateFirstName(newFirstName string) {
 	p.firstName = newFirstName
 }
