@@ -1,13 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+type englishBot struct{}
+type spanishBot struct{}
 
 type bot interface {
 	getGreeting() string
 }
-
-type englishBot struct{}
-type spanishBot struct{}
 
 func main() {
 	eb := englishBot{}
@@ -15,17 +17,16 @@ func main() {
 
 	printGreeting(eb)
 	printGreeting(sb)
+
 }
 
 func printGreeting(b bot) {
 	fmt.Println(b.getGreeting())
 }
-
-func (englishBot) getGreeting() string {
-	// VERY custom logic for generating an english greeting
-	return "Hi there!"
+func (eb englishBot) getGreeting() string {
+	return "Hi!"
 }
 
-func (spanishBot) getGreeting() string {
+func (eb spanishBot) getGreeting() string {
 	return "Hola!"
 }
