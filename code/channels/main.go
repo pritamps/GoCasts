@@ -7,11 +7,11 @@ import (
 
 func main() {
 	links := []string{
-		"http://google.com",
+		"http://amazon.com",
 		"http://facebook.com",
+		"http://google.com",
 		"http://stackoverflow.com",
 		"http://golang.org",
-		"http://amazon.com",
 	}
 
 	// Communication will be of type string
@@ -21,10 +21,13 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	fmt.Println(<-c)
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c)
+	}
 }
 
 func checkLink(link string, c chan string) {
+	fmt.Println("Starting looking for", link)
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "might be down!")
